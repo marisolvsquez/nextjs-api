@@ -1,6 +1,14 @@
+import NextCors from 'nextjs-cors';
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
+    await NextCors(req, res, {
+      // Options
+      methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+      origin: '*',
+      optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+    });
+
     const sampleData = String.raw`{
       "num_matches":6,
       "num_total_entries":6,
